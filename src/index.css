@@ -54,8 +54,11 @@ textarea {
 
 .space-bg {
   background-color: var(--page);
-  background-image:
-    radial-gradient(ellipse 65% 35% at 82% 28%, var(--page-glow), transparent);
+  background-image: radial-gradient(
+    ellipse 65% 35% at 82% 28%,
+    var(--page-glow),
+    transparent
+  );
 }
 
 .topbar {
@@ -89,8 +92,12 @@ textarea {
   color: var(--text);
   cursor: pointer;
 }
-.theme-toggle svg { color: var(--accent); }
-.theme-toggle:hover { border-color: var(--accent); }
+.theme-toggle svg {
+  color: var(--accent);
+}
+.theme-toggle:hover {
+  border-color: var(--accent);
+}
 .page-intro {
   display: flex;
   align-items: end;
