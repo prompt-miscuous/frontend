@@ -20,12 +20,22 @@ npm run lint  # lint con oxlint
 npm run build # build de producción en dist/
 ```
 
+## Backend
+
+El visor consume `GET /frames` del backend (repo `backend/`). Para desarrollo
+local, arranca el backend en `http://127.0.0.1:8000` (ver su README) o copia
+`.env.example` a `.env` y ajusta `VITE_BACKEND_URL`. Sin backend, añade
+`?mock=1` a la URL para usar la simulación local.
+
 ## Estructura
 
 ```text
 src/
   main.jsx        # entrada de la app
-  App.jsx         # componente raíz
+  App.jsx         # composición: config + vista + reproductor
+  lib/            # bandas, validación, URL params, config, servicio api
+  hooks/          # useSkyConfig (estado + sincronización URL + generación)
+  components/     # Header, ConfigForm, ObjectCard, SkyPreview, SummaryPanel, FramePlayer
   test/           # setup y tests con Vitest + Testing Library
 ```
 
