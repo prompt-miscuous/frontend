@@ -16,25 +16,25 @@ export default function SummaryPanel({ manifest, errorMessage }) {
   return (
     <section
       aria-label="Resumen de la región"
-      className="rounded-2xl border border-white/10 bg-white/[0.06] p-5 shadow-xl shadow-black/30 backdrop-blur-md"
+      className="glass-panel rounded-2xl p-5 sm:p-6"
     >
       <h2 className="text-lg font-semibold text-white">
         Región preparada (simulación local)
       </h2>
       <dl className="mt-3 grid grid-cols-2 gap-2 text-sm sm:grid-cols-3">
-        <div className="rounded-lg bg-slate-900/60 px-3 py-2">
+        <div className="rounded-xl border border-white/[0.06] bg-slate-950/35 px-3 py-2">
           <dt className="text-slate-400">RA / Dec</dt>
           <dd className="font-mono text-slate-100">
             {params.ra}° / {params.dec}°
           </dd>
         </div>
-        <div className="rounded-lg bg-slate-900/60 px-3 py-2">
+        <div className="rounded-xl border border-white/[0.06] bg-slate-950/35 px-3 py-2">
           <dt className="text-slate-400">Tamaño / Banda</dt>
           <dd className="font-mono text-slate-100">
             {params.size}° / {params.band}
           </dd>
         </div>
-        <div className="rounded-lg bg-slate-900/60 px-3 py-2">
+        <div className="rounded-xl border border-white/[0.06] bg-slate-950/35 px-3 py-2">
           <dt className="text-slate-400">Cuadrícula</dt>
           <dd className="font-mono text-slate-100">
             {grid.width}×{grid.height} px
@@ -45,7 +45,7 @@ export default function SummaryPanel({ manifest, errorMessage }) {
         {frames.map((frame) => (
           <li
             key={frame.obs_id}
-            className="flex justify-between gap-2 rounded-lg bg-slate-900/60 px-3 py-1.5"
+            className="flex justify-between gap-2 rounded-lg bg-slate-950/35 px-3 py-1.5"
           >
             <span className="font-mono">{frame.obs_id}</span>
             <span className="text-slate-400">

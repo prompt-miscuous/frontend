@@ -31,7 +31,7 @@ function NumberField({
         aria-invalid={error ? 'true' : 'false'}
         aria-describedby={error ? errorId : undefined}
         onChange={(event) => onChange(event.target.value)}
-        className="w-full rounded-lg border border-slate-600/60 bg-slate-900/70 px-3 py-2 text-slate-100 placeholder:text-slate-500 focus:border-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-400/40"
+        className="w-full rounded-xl border border-white/10 bg-slate-950/45 px-3.5 py-3 text-slate-100 placeholder:text-slate-500 focus:border-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-300/20"
       />
       {children}
       {error ? (
@@ -60,7 +60,7 @@ export default function ConfigForm({
   return (
     <section
       aria-label="Configuración de la región"
-      className="rounded-2xl border border-white/10 bg-white/[0.06] p-5 shadow-xl shadow-black/30 backdrop-blur-md sm:p-6"
+      className="glass-panel rounded-2xl p-5 sm:p-6"
     >
       <h2 className="mb-4 text-lg font-semibold text-white">
         Configuración de la región
@@ -103,7 +103,7 @@ export default function ConfigForm({
                 key={preset}
                 type="button"
                 onClick={() => onInput('size', String(preset))}
-                className="rounded-full border border-slate-500/60 px-3 py-1 text-xs text-slate-200 transition hover:border-sky-400 hover:text-white"
+                className="rounded-lg border border-white/10 bg-white/[0.025] px-3 py-1.5 text-xs text-slate-300 transition hover:border-cyan-300/50 hover:text-white"
               >
                 {preset.toFixed(2)}°
               </button>
@@ -123,7 +123,7 @@ export default function ConfigForm({
             aria-invalid={errors.band ? 'true' : 'false'}
             aria-describedby={errors.band ? 'field-band-error' : undefined}
             onChange={(event) => onBand(event.target.value)}
-            className="w-full rounded-lg border border-slate-600/60 bg-slate-900/70 px-3 py-2 text-slate-100 focus:border-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-400/40"
+            className="w-full rounded-xl border border-white/10 bg-slate-950/45 px-3.5 py-3 text-slate-100 focus:border-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-300/20"
           >
             <option value="">Selecciona una banda…</option>
             {BANDS.map((item) => (
@@ -148,21 +148,21 @@ export default function ConfigForm({
           type="button"
           onClick={onGenerate}
           disabled={!isValid || loading}
-          className="flex-1 rounded-lg bg-sky-500 px-4 py-2.5 font-semibold text-slate-950 transition hover:bg-sky-400 disabled:cursor-not-allowed disabled:opacity-40"
+          className="flex-1 rounded-xl bg-cyan-300 px-4 py-3 font-semibold text-slate-950 transition hover:bg-cyan-200 disabled:cursor-not-allowed disabled:opacity-40"
         >
           {loading ? 'Generando…' : 'Generar región'}
         </button>
         <button
           type="button"
           onClick={onReset}
-          className="rounded-lg border border-slate-500/70 px-4 py-2.5 text-slate-100 transition hover:border-slate-300"
+          className="rounded-xl border border-white/10 px-4 py-3 text-sm text-slate-200 transition hover:border-white/30 hover:bg-white/[0.04]"
         >
           Restablecer valores
         </button>
         <button
           type="button"
           onClick={onCopy}
-          className="rounded-lg border border-slate-500/70 px-4 py-2.5 text-slate-100 transition hover:border-slate-300"
+          className="rounded-xl border border-white/10 px-4 py-3 text-sm text-slate-200 transition hover:border-white/30 hover:bg-white/[0.04]"
         >
           {copied ? '¡Enlace copiado!' : 'Copiar enlace'}
         </button>

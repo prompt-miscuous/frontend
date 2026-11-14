@@ -1,9 +1,9 @@
 import ConfigForm from './components/ConfigForm.jsx';
 import FramePlayer from './components/FramePlayer.jsx';
-import Header from './components/Header.jsx';
 import ObjectCard from './components/ObjectCard.jsx';
 import SkyPreview from './components/SkyPreview.jsx';
 import SummaryPanel from './components/SummaryPanel.jsx';
+import Navbar from './components/Navbar.jsx';
 import { useSkyConfig } from './hooks/useSkyConfig.js';
 
 function App() {
@@ -12,9 +12,21 @@ function App() {
     config.manifest?.frames?.length > 0 &&
     config.manifest.frames.every((frame) => frame.png_url);
   return (
-    <div className="space-bg min-h-screen px-4 py-6 text-slate-100 sm:px-6 lg:px-10">
-      <div className="mx-auto flex max-w-6xl flex-col gap-6">
-        <Header />
+    <div className="space-bg min-h-screen px-4 pb-12 text-slate-100 sm:px-6">
+      <div className="mx-auto flex max-w-7xl flex-col gap-8">
+        <Navbar />
+        <header id="inicio" className="page-intro">
+          <div>
+            <p className="eyebrow">Exploración infrarroja</p>
+            <h1>
+              Planet X <span>and</span> SPHEREx
+            </h1>
+          </div>
+          <p>
+            Configura una región del cielo
+            <br className="hidden sm:block" /> y explora sus observaciones.
+          </p>
+        </header>
         {config.urlWarning ? (
           <p
             role="status"
@@ -23,8 +35,10 @@ function App() {
             {config.urlWarning}
           </p>
         ) : null}
-        <main className="grid items-start gap-6 lg:grid-cols-2">
-          <div className="flex flex-col gap-6">
+        <main
+          className="grid items-start gap-5 lg:grid-cols-[0.94fr_1.06fr]"
+        >
+          <div className="flex flex-col gap-5">
             <ConfigForm
               inputs={config.inputs}
               band={config.band}
@@ -40,7 +54,7 @@ function App() {
             />
             <ObjectCard onSelect={config.reset} />
           </div>
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-5">
             <SkyPreview
               values={config.values}
               status={config.status}

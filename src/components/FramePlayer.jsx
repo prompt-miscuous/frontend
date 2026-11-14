@@ -80,7 +80,7 @@ export default function FramePlayer({ manifest }) {
   return (
     <section
       aria-label="Reproductor de épocas"
-      className="rounded-2xl border border-white/10 bg-white/[0.06] p-5 shadow-xl shadow-black/30 backdrop-blur-md"
+      className="glass-panel rounded-2xl p-5 sm:p-6"
     >
       <h2 className="text-lg font-semibold text-white">Animación temporal</h2>
       <div className="mt-3 overflow-hidden rounded-xl border border-slate-700/60 bg-slate-950">
