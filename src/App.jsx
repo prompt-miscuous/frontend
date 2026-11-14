@@ -1,7 +1,6 @@
 import ConfigForm from './components/ConfigForm.jsx';
 import FramePlayer from './components/FramePlayer.jsx';
 import ObjectCard from './components/ObjectCard.jsx';
-import SkyPreview from './components/SkyPreview.jsx';
 import SummaryPanel from './components/SummaryPanel.jsx';
 import Navbar from './components/Navbar.jsx';
 import { useSkyConfig } from './hooks/useSkyConfig.js';
@@ -35,9 +34,7 @@ function App() {
             {config.urlWarning}
           </p>
         ) : null}
-        <main
-          className="grid items-start gap-5 lg:grid-cols-[0.94fr_1.06fr]"
-        >
+        <main className="grid items-start gap-5 lg:grid-cols-[0.94fr_1.06fr]">
           <div className="flex flex-col gap-5">
             <ConfigForm
               inputs={config.inputs}
@@ -55,18 +52,13 @@ function App() {
             <ObjectCard onSelect={config.reset} />
           </div>
           <div className="flex flex-col gap-5">
-            <SkyPreview
-              values={config.values}
-              status={config.status}
-              manifest={config.manifest}
-            />
+            {playable ? (
+              <FramePlayer key={config.requestId} manifest={config.manifest} />
+            ) : null}
             <SummaryPanel
               manifest={config.manifest}
               errorMessage={config.errorMessage}
             />
-            {playable ? (
-              <FramePlayer key={config.requestId} manifest={config.manifest} />
-            ) : null}
           </div>
         </main>
         <footer className="text-center text-xs text-slate-500">
