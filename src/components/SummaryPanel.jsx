@@ -19,7 +19,9 @@ export default function SummaryPanel({ manifest, errorMessage }) {
       className="glass-panel rounded-2xl p-5 sm:p-6"
     >
       <h2 className="text-lg font-semibold text-white">
-        Región preparada (simulación local)
+        {manifest.simulated
+          ? 'Región preparada (simulación local)'
+          : 'Región preparada'}
       </h2>
       <dl className="mt-3 grid grid-cols-2 gap-2 text-sm sm:grid-cols-3">
         <div className="rounded-xl border border-white/[0.06] bg-slate-950/35 px-3 py-2">
@@ -57,7 +59,9 @@ export default function SummaryPanel({ manifest, errorMessage }) {
       </ul>
       <p className="mt-2 text-xs text-slate-400">
         {frames.length} épocas solicitadas de {epochs_available} disponibles.
-        Las imágenes reales llegan con el backend (Fase 3).
+        {manifest.simulated
+          ? ' Simulación local: las imágenes reales llegan con el backend.'
+          : ''}
       </p>
     </section>
   );
