@@ -1,10 +1,10 @@
-import { render, screen } from '@testing-library/react'
-import { expect, test } from 'vitest'
-import App from '../App.jsx'
+import { render, screen } from '@testing-library/react';
+import { expect, test } from 'vitest';
+import App from '../App.jsx';
 
 test('renders the app heading', () => {
-  render(<App />)
+  render(<App />);
   expect(
-    screen.getByRole('heading', { name: 'Planet X and SPHEREx' }),
-  ).toBeInTheDocument()
-})
+    screen.getByRole('heading', { name: 'Planet X and SPHEREx' })
+  ).toBeInTheDocument();
+});

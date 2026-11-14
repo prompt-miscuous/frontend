@@ -5,11 +5,11 @@ function App() {
         Planet X and SPHEREx
       </h1>
       <p className="max-w-md text-base text-neutral-700">
-        Sky viewer for the NASA Space Apps Challenge 2026: enter coordinates
-        and watch how the sky changes over time.
+        Sky viewer for the NASA Space Apps Challenge 2026: enter coordinates and
+        watch how the sky changes over time.
       </p>
     </main>
-  )
+  );
 }
 
-export default App
+export default App;
