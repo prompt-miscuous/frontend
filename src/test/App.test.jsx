@@ -102,6 +102,14 @@ describe('App', () => {
     expect(screen.getByLabelText(/Ascensión recta/)).toHaveValue('133.7951');
   });
 
+  test('sin cuadros muestra el recuadro punteado de la animación', () => {
+    renderApp();
+    expect(screen.getByText('Todavía no hay imágenes')).toBeInTheDocument();
+    expect(
+      screen.getByText(/La animación temporal aparecerá aquí/)
+    ).toBeInTheDocument();
+  });
+
   test('generar muestra el resumen del manifiesto', async () => {
     renderApp();
     fireEvent.click(screen.getByRole('button', { name: 'Generar región' }));

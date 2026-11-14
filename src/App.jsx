@@ -1,6 +1,7 @@
 import ConfigForm from './components/ConfigForm.jsx';
 import FramePlayer from './components/FramePlayer.jsx';
 import ObjectCard from './components/ObjectCard.jsx';
+import PlayerPlaceholder from './components/PlayerPlaceholder.jsx';
 import SummaryPanel from './components/SummaryPanel.jsx';
 import Navbar from './components/Navbar.jsx';
 import { useSkyConfig } from './hooks/useSkyConfig.js';
@@ -54,7 +55,9 @@ function App() {
           <div className="flex flex-col gap-5">
             {playable ? (
               <FramePlayer key={config.requestId} manifest={config.manifest} />
-            ) : null}
+            ) : (
+              <PlayerPlaceholder status={config.status} />
+            )}
             <SummaryPanel
               manifest={config.manifest}
               errorMessage={config.errorMessage}
