@@ -1,79 +1,80 @@
 import { useCallback, useEffect, useState } from 'react';
-import { ArrowLeft, ArrowRight, Database, Monitor, Server } from 'lucide-react';
+import {
+  ArrowLeft,
+  ArrowRight,
+  Brain,
+  Database,
+  Monitor,
+  Server,
+} from 'lucide-react';
+import campo from '../assets/spherex-campo.png';
+import epocas from '../assets/sky-epocas.gif';
+import alineado from '../assets/alineado.gif';
+import sinAlinear from '../assets/sin-alinear.gif';
+import satelite from '../assets/satelite-spherex.png';
+import { useTheme } from '../contexts/ThemeContext.jsx';
+
+const LOGOS = {
+  dark: '/space-apps-cochabamba-white.webp',
+  light: '/space-apps-cochabamba-dark.webp',
+};
 
 const VIDEO_ID = 'Jqw6QeUIDoU';
 
-function Shell({ children }) {
+function MediaSlide({ header, phrase, cue, children }) {
   return (
-    <section className="flex min-h-screen flex-col items-center justify-center px-6 py-10">
-      <div className="flex w-full max-w-5xl flex-col items-center gap-6 text-center">
-        {children}
-      </div>
+    <section className="flex min-h-screen flex-col items-center justify-center gap-6 px-6 pt-12 pb-24 text-center">
+      <h2 className="text-4xl font-bold tracking-tight text-[var(--text)] sm:text-5xl">
+        {header}
+      </h2>
+      <div className="w-full max-w-5xl">{children}</div>
+      <p className="max-w-3xl text-base text-[var(--muted)] sm:text-lg">
+        {phrase}
+      </p>
+      {cue ? (
+        <p className="w-full max-w-3xl border-l-2 border-[var(--accent)] pl-4 text-left text-sm leading-relaxed text-[var(--muted)] italic sm:text-base">
+          {cue}
+        </p>
+      ) : null}
     </section>
   );
 }
 
-function Kicker({ children }) {
+function Img({ src, alt, className }) {
   return (
-    <p className="text-xs font-semibold tracking-[0.3em] text-slate-400 uppercase">
-      {children}
-    </p>
-  );
-}
-
-function Title({ children }) {
-  return (
-    <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
-      {children}
-    </h2>
-  );
-}
-
-function Lead({ children }) {
-  return (
-    <p className="max-w-3xl text-lg text-slate-300 sm:text-xl">{children}</p>
-  );
-}
-
-function Chip({ children }) {
-  return (
-    <span className="rounded-full border border-sky-400/40 bg-sky-400/10 px-3 py-1 text-sm text-sky-200">
-      {children}
-    </span>
+    <img
+      src={src}
+      alt={alt}
+      className={`mx-auto h-[50vh] w-auto rounded-3xl border border-[var(--panel-border)] shadow-2xl ${className ?? ''}`}
+    />
   );
 }
 
 function ArchBox({ icon, title, caption }) {
   return (
-    <div className="flex flex-1 flex-col items-center gap-2 rounded-2xl border border-slate-600 bg-slate-900/70 p-5">
-      <span className="text-sky-300">{icon}</span>
-      <p className="text-lg font-semibold text-white">{title}</p>
-      <p className="text-sm text-slate-400">{caption}</p>
+    <div className="flex h-full min-h-[170px] flex-col items-center justify-center gap-3 rounded-3xl border border-[var(--panel-border)] bg-[var(--panel)] p-6 text-center backdrop-blur-md">
+      <span className="text-[var(--accent)]">{icon}</span>
+      <p className="text-xl font-semibold text-[var(--text)]">{title}</p>
+      <p className="text-sm leading-relaxed text-[var(--muted)] sm:text-base">
+        {caption}
+      </p>
     </div>
   );
 }
 
-function Arrow() {
-  return (
-    <span
-      className="hidden shrink-0 items-center text-slate-400 sm:flex"
-      aria-hidden="true"
-    >
-      <ArrowRight className="h-6 w-6" />
-    </span>
-  );
-}
-
 function SlideVideo() {
+  const { theme } = useTheme();
   return (
-    <Shell>
-      <Kicker>NASA Space Apps 2026 · Cochabamba</Kicker>
-      <h1 className="text-6xl font-bold tracking-tight text-white">BlinkX</h1>
-      <Lead>
-        En este cielo hay un objeto que se está moviendo, y nadie sabe todavía
-        qué es.
-      </Lead>
-      <div className="aspect-video w-full overflow-hidden rounded-2xl border border-slate-700 shadow-2xl">
+    <section className="flex min-h-screen flex-col items-center justify-center gap-6 px-6 pt-12 pb-24 text-center">
+      <img
+        src={LOGOS[theme] ?? LOGOS.dark}
+        alt="NASA Space Apps Cochabamba"
+        className="h-14 w-auto"
+      />
+      <h1 className="text-6xl font-bold tracking-tight text-[var(--text)]">
+        BlinkX
+      </h1>
+      <div className="aspect-video w-full max-w-3xl overflow-hidden rounded-2xl border border-[var(--panel-border)] shadow-2xl">
         <iframe
           title="Video: Exploring Cosmic Origins with NASA's SPHEREx"
           src={`https://www.youtube.com/embed/${VIDEO_ID}?rel=0`}
@@ -82,220 +83,221 @@ function SlideVideo() {
           allowFullScreen
         />
       </div>
-      <p className="text-sm text-slate-500">
-        Video: NASA Jet Propulsion Laboratory — Exploring Cosmic Origins with
-        NASA&rsquo;s SPHEREx
+      <p className="max-w-2xl text-base text-[var(--muted)] sm:text-lg">
+        En este cielo hay un objeto que se está moviendo, y nadie sabe todavía
+        qué es.
       </p>
-    </Shell>
+      <p className="w-full max-w-3xl border-l-2 border-[var(--accent)] pl-4 text-left text-sm leading-relaxed text-[var(--muted)] italic sm:text-base">
+        Desde 2025, SPHEREx fotografía todo el cielo cada seis meses en 102
+        bandas del espectro infrarrojo.
+      </p>
+    </section>
   );
 }
 
 function SlideArchitecture() {
   return (
-    <Shell>
-      <Kicker>Cómo funciona</Kicker>
-      <Title>La arquitectura, en una imagen</Title>
-      <Lead>
-        Nivel contenedores (C4 L2 simplificado): tres piezas entre los datos de
-        la NASA y tus ojos.
-      </Lead>
-      <div className="flex w-full flex-col items-stretch gap-3 sm:flex-row sm:items-center">
+    <MediaSlide
+      header="BlinkX, en una imagen"
+      phrase="Así viaja una búsqueda: del archivo de la NASA a tu pantalla."
+
+      cue="La NASA guarda las fotos; BlinkX las recorta, alinea y renderiza; el modelo marca los candidatos; la última palabra la tiene quien mira."
+    >
+      <div className="grid w-full gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <ArchBox
-          icon={<Database className="h-8 w-8" />}
+          icon={<Database className="h-10 w-10" />}
           title="1 · Datos NASA"
-          caption="Archivo SPHEREx en AWS (bucket S3/IRSA): más de mil millones de objetos infrarrojos"
+          caption="Archivo SPHEREx en AWS: más de mil millones de objetos infrarrojos"
         />
-        <Arrow />
         <ArchBox
-          icon={<Server className="h-8 w-8" />}
+          icon={<Server className="h-10 w-10" />}
           title="2 · BlinkX Backend"
-          caption="Busca tu zona, recorta, alinea las épocas y las convierte en imágenes (GET /frames)"
+          caption="Busca tu zona, recorta, alinea y renderiza (GET /frames)"
         />
-        <Arrow />
         <ArchBox
-          icon={<Monitor className="h-8 w-8" />}
-          title="3 · Tu pantalla"
-          caption="Escribes las coordenadas y ves tu cielo como un video, época tras época"
+          icon={<Brain className="h-10 w-10" />}
+          title="3 · Nuestro modelo"
+          caption="Lee los cuadros alineados, marca candidatos que se mueven y sugiere dónde mirar"
+        />
+        <ArchBox
+          icon={<Monitor className="h-10 w-10" />}
+          title="4 · Tu pantalla"
+          caption="Coordenadas adentro, video y sugerencias afuera"
         />
       </div>
-      <div className="flex flex-wrap justify-center gap-2">
-        <Chip>Datos públicos (S3)</Chip>
-        <Chip>Sin claves ni cuentas</Chip>
-        <Chip>Frontend en CloudFront</Chip>
-      </div>
-    </Shell>
+    </MediaSlide>
   );
 }
 
 function SlideProblem() {
   return (
-    <Shell>
-      <Kicker>El problema</Kicker>
-      <Title>El telescopio vuela; la investigación se queda fuera</Title>
-      <Lead>
-        Desde 2025 SPHEREx fotografía todo el cielo cada seis meses en 102
-        bandas del infrarrojo cercano. Devuelve imágenes de más de mil millones
-        de objetos… y ninguna persona puede revisarlas todas.
-      </Lead>
-      <p className="max-w-3xl text-lg text-slate-200">
-        Ahí está la brecha: entre la investigación de todos y la tecnología
-        avanzada de la NASA. El telescopio vuela, pero quien debería estar
-        mirando sigue fuera de la sala.
-      </p>
-    </Shell>
+    <MediaSlide
+      header="El problema"
+      phrase="Desde 2025 SPHEREx fotografía todo el cielo cada seis meses en 102 bandas del infrarrojo. Ninguna persona puede revisar más de mil millones de objetos."
+
+      cue="102 bandas, más de mil millones de objetos y ni una sola persona capaz de revisarlo todo: esa es la brecha entre la investigación y la tecnología avanzada de la NASA."
+    >
+      <Img
+        src={campo}
+        alt="Campo de estrellas real observado por SPHEREx (detector 1)"
+      />
+    </MediaSlide>
   );
 }
 
 function SlideChallenge() {
   return (
-    <Shell>
-      <Kicker>El reto</Kicker>
-      <Title>Planet X and SPHEREx</Title>
-      <Lead>
-        El desafío de la NASA: crear una herramienta pública para ver cómo
-        cambia el cielo en el tiempo y cazar objetos en movimiento.
-      </Lead>
-      <p className="max-w-3xl text-lg text-slate-200">
-        La misma técnica que Clyde Tombaugh usó para encontrar a Plutón en 1930:
-        comparar imágenes de épocas distintas hasta que algo se delata
-        moviéndose.
-      </p>
-    </Shell>
+    <MediaSlide
+      header="Planet X and SPHEREx"
+      phrase="El reto de la NASA: ver cómo cambia el cielo y cazar objetos en movimiento, con la técnica que Clyde Tombaugh usó para encontrar a Plutón."
+
+      cue="El reto «Planet X and SPHEREx» pide una herramienta web pública para ver cómo cambia el cielo en el tiempo y cazar objetos en movimiento."
+    >
+      <div className="flex w-full flex-col gap-4 sm:flex-row">
+        <figure className="flex-1">
+          <img
+            src={sinAlinear}
+            alt="Dos épocas del mismo cielo sin alinear"
+            className="h-[36vh] w-full rounded-3xl border border-[var(--panel-border)] object-cover [image-rendering:pixelated]"
+          />
+          <figcaption className="mt-2 text-sm text-[var(--muted)]">
+            Sin alinear
+          </figcaption>
+        </figure>
+        <figure className="flex-1">
+          <img
+            src={alineado}
+            alt="Las mismas épocas alineadas como animación"
+            className="h-[36vh] w-full rounded-3xl border border-[var(--panel-border)] object-cover [image-rendering:pixelated]"
+          />
+          <figcaption className="mt-2 text-sm text-[var(--muted)]">
+            Alineado por BlinkX
+          </figcaption>
+        </figure>
+      </div>
+    </MediaSlide>
+  );
+}
+
+function SlideMission() {
+  return (
+    <MediaSlide
+      header="Elegimos SPHEREx"
+      phrase="El observatorio infrarrojo de la NASA que fotografía todo el cielo cada seis meses, en 102 bandas."
+
+      cue="Todo el cielo, cada seis meses, en 102 bandas del infrarrojo cercano: esa es la fuente de cada imagen que se ve en BlinkX."
+    >
+      <div className="flex w-full flex-col gap-4 sm:flex-row">
+        <figure className="flex-1">
+          <img
+            src={satelite}
+            alt="Ilustración del observatorio SPHEREx (NASA/JPL-Caltech)"
+            className="h-[42vh] w-full rounded-3xl border border-[var(--panel-border)] bg-[var(--inset)] object-contain"
+          />
+          <figcaption className="mt-2 text-sm text-[var(--muted)]">
+            El observatorio SPHEREx
+          </figcaption>
+        </figure>
+        <figure className="flex-1">
+          <img
+            src={epocas}
+            alt="Lo que se ve en BlinkX: el mismo cielo en tres épocas de SPHEREx"
+            className="h-[42vh] w-full rounded-3xl border border-[var(--panel-border)] object-cover [image-rendering:pixelated]"
+          />
+          <figcaption className="mt-2 text-sm text-[var(--muted)]">
+            BlinkX en vivo: épocas reales
+          </figcaption>
+        </figure>
+      </div>
+    </MediaSlide>
   );
 }
 
 function SlideSolution() {
-  const steps = [
-    [
-      '1',
-      'Escribes',
-      'Coordenadas, tamaño y banda infrarroja de tu región del cielo',
-    ],
-    [
-      '2',
-      'BlinkX busca',
-      'Todas las épocas que la cubren; descarga solo tu recorte, las alinea y renderiza',
-    ],
-    [
-      '3',
-      'Ves el video',
-      'El mismo cielo, época tras época: todo quieto… excepto lo que se movió',
-    ],
-  ];
   return (
-    <Shell>
-      <Kicker>La solución</Kicker>
-      <Title>Archivos de 70 MB en videos de segundos</Title>
-      <div className="grid w-full gap-4 sm:grid-cols-3">
-        {steps.map(([n, h, p]) => (
-          <div
-            key={n}
-            className="flex flex-col items-center gap-2 rounded-2xl border border-slate-600 bg-slate-900/70 p-5"
-          >
-            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-sky-500/20 text-lg font-bold text-sky-200">
-              {n}
-            </span>
-            <p className="text-lg font-semibold text-white">{h}</p>
-            <p className="text-sm text-slate-400">{p}</p>
-          </div>
-        ))}
-      </div>
-      <Lead>
-        Sin descargar nada, sin saber astronomía ni software avanzado.
-        Cualquiera puede parpadear el cielo como lo hizo Tombaugh.
-      </Lead>
-    </Shell>
+    <MediaSlide
+      header="La solución"
+      phrase="Archivos de 70 MB en videos de segundos: escribes, BlinkX busca y alinea, tú das play."
+
+      cue="Sin descargar nada y sin saber astronomía ni software avanzado: cualquiera puede parpadear el cielo como lo hizo Tombaugh con Plutón."
+    >
+      <Img
+        src={epocas}
+        alt="El mismo cielo en tres épocas de SPHEREx (banda D3)"
+        className="h-[44vh] w-auto [image-rendering:pixelated]"
+      />
+    </MediaSlide>
   );
 }
 
 function SlideChatbot() {
   return (
-    <Shell>
-      <Kicker>Segunda capa</Kicker>
-      <Title>Un guía inteligente en la pantalla</Title>
-      <Lead>
-        El chatbot integrado te dice qué astro conocido hay en las coordenadas
-        que estás mirando. Si el punto no coincide con catálogos, el modelo lo
-        marca como región desconocida.
-      </Lead>
-      <div className="flex max-w-2xl flex-col gap-3 text-left">
-        <p className="rounded-2xl rounded-bl-sm bg-slate-800 px-4 py-3 text-slate-200">
-          ¿Qué hay en 232.66, −10.72?
-        </p>
-        <p className="rounded-2xl rounded-br-sm bg-sky-900/60 px-4 py-3 text-sky-100">
-          Es una región sin objetos catalogados brillantes. El modelo sugiere
-          mirar aquí: hay candidatos que merecen una segunda visita.
-        </p>
+    <MediaSlide
+      header="Un guía inteligente"
+      phrase="El chatbot te dice qué astro hay en tus coordenadas; si nada coincide, sugiere dónde mirar."
+
+      cue="Le preguntas qué astro conocido hay en esas coordenadas y te responde; si el punto no coincide con catálogos, el modelo lo marca como región desconocida y sugiere dónde conviene mirar a continuación."
+    >
+      <div className="mx-auto w-full max-w-2xl overflow-hidden rounded-3xl border border-[var(--panel-border)] bg-[var(--panel)] text-left shadow-xl backdrop-blur-md">
+        <div className="bg-[var(--inset)] px-6 py-4">
+          <p className="text-lg font-semibold text-[var(--text)]">
+            Asistente BlinkX
+          </p>
+          <p className="text-sm text-[var(--muted)]">En línea · WISE 0855</p>
+        </div>
+        <div className="flex flex-col gap-3 px-5 py-5 text-base sm:text-lg">
+          <p className="max-w-[80%] self-end rounded-2xl rounded-br-sm bg-[var(--accent)] px-4 py-3 text-[var(--accent-text)]">
+            ¿Qué hay en 232.66, −10.72?
+          </p>
+          <p className="max-w-[85%] self-start rounded-2xl rounded-bl-sm border border-[var(--panel-border)] bg-[var(--inset)] px-4 py-3 text-[var(--text)]">
+            Región sin objetos catalogados brillantes. El modelo sugiere mirar
+            aquí.
+          </p>
+        </div>
       </div>
-      <Lead>
-        El modelo prioriza candidatos para que el tiempo humano vaya a la caza
-        prometedora.
-      </Lead>
-    </Shell>
+    </MediaSlide>
   );
 }
 
 function SlideData() {
-  const items = [
-    [
-      'Fuente',
-      'Bucket público nasa-irsa-spherex (QR2 y QR3, Nivel 2) + servicio SIA2/IRSA',
-    ],
-    [
-      'Pipeline',
-      'Recortes de ~MB en vez de FITS de 70 MB; alineación entre épocas verificada con PoCs',
-    ],
-    [
-      'En vivo',
-      'Frontend desplegado en CloudFront; backend sirviendo épocas reales de SPHEREx',
-    ],
-  ];
   return (
-    <Shell>
-      <Kicker>Datos y resultados</Kicker>
-      <Title>Construido sobre datos reales de la NASA</Title>
-      <div className="flex w-full max-w-3xl flex-col gap-3 text-left">
-        {items.map(([k, v]) => (
-          <p
-            key={k}
-            className="rounded-xl border border-slate-600 bg-slate-900/70 px-4 py-3 text-slate-200"
-          >
-            <span className="font-semibold text-white">{k}: </span>
-            {v}
-          </p>
-        ))}
-      </div>
-    </Shell>
+    <MediaSlide
+      header="Datos reales de la NASA"
+      phrase="Bucket público nasa-irsa-spherex (QR2 y QR3) y servicio SIA2/IRSA: del crudo al video, sin intermediarios."
+
+      cue="El frontend está desplegado en CloudFront y el backend ya sirve épocas reales de SPHEREx, con las pruebas del pipeline disponibles en los repos."
+    >
+      <Img
+        src={campo}
+        alt="Campo de SPHEREx renderizado desde un FITS de ciencia"
+      />
+    </MediaSlide>
   );
 }
 
 function SlideClose() {
   return (
-    <Shell>
-      <Kicker>Impacto</Kicker>
-      <Title>Democratizar la exploración</Title>
-      <Lead>
-        La mayoría de los cometas y enanas marrones conocidos se descubrió con
-        voluntarios comparando imágenes. Si el Planeta X existe, se vería aquí:
-        como un punto que se mueve lento entre dos visitas.
-      </Lead>
-      <p className="max-w-3xl text-xl font-semibold text-white">
-        Estamos democratizando la educación para todo investigador, sea nuevo o
-        no: el mismo dato y la misma técnica — la que Tombaugh usó para
-        encontrar a Plutón.
-      </p>
-      <p className="text-2xl font-bold text-sky-300">
-        BlinkX. Mira cómo se mueve el cielo.
-      </p>
-    </Shell>
+    <MediaSlide
+      header="Mira cómo se mueve el cielo"
+      phrase="Estamos democratizando la educación para todo investigador, sea nuevo o no: el mismo dato y la misma técnica que encontró a Plutón."
+
+      cue="La mayoría de los cometas y enanas marrones conocidos se descubrió con voluntarios comparando imágenes. Si el Planeta X pasó por estas épocas, se vería aquí: como un punto que se mueve lento entre dos visitas."
+    >
+      <Img
+        src={epocas}
+        alt="Parpadeo del mismo cielo entre épocas de SPHEREx"
+        className="h-[44vh] w-auto [image-rendering:pixelated]"
+      />
+    </MediaSlide>
   );
 }
 
 const SLIDES = [
   SlideVideo,
-  SlideArchitecture,
   SlideProblem,
   SlideChallenge,
+  SlideMission,
+  SlideArchitecture,
   SlideSolution,
   SlideChatbot,
   SlideData,
@@ -303,7 +305,10 @@ const SLIDES = [
 ];
 
 export default function Slides() {
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(() => {
+    const n = Number(new URLSearchParams(window.location.search).get('s'));
+    return Number.isInteger(n) && n >= 1 && n <= SLIDES.length ? n - 1 : 0;
+  });
   const last = SLIDES.length - 1;
 
   const go = useCallback(
@@ -332,7 +337,7 @@ export default function Slides() {
   const Current = SLIDES[index];
 
   return (
-    <div className="space-bg min-h-screen text-slate-100">
+    <div className="space-bg min-h-screen text-[var(--text)]">
       <Current />
       <nav
         aria-label="Navegación de diapositivas"
@@ -343,7 +348,7 @@ export default function Slides() {
           onClick={() => go(index - 1)}
           disabled={index === 0}
           aria-label="Anterior"
-          className="rounded-full border border-slate-600 bg-slate-900/80 p-2 text-slate-200 disabled:opacity-30"
+          className="rounded-full border border-[var(--panel-border)] bg-[var(--panel)] p-2 text-[var(--text)] disabled:opacity-30"
         >
           <ArrowLeft className="h-5 w-5" />
         </button>
@@ -355,10 +360,10 @@ export default function Slides() {
               onClick={() => go(i)}
               aria-label={`Ir a la diapositiva ${i + 1}`}
               aria-current={i === index}
-              className={`h-2.5 w-2.5 rounded-full ${i === index ? 'bg-sky-400' : 'bg-slate-600'}`}
+              className={`h-2.5 w-2.5 rounded-full ${i === index ? 'bg-[var(--accent)]' : 'bg-[var(--muted)]'}`}
             />
           ))}
-          <span className="ml-3 text-sm text-slate-400">
+          <span className="ml-3 text-sm text-[var(--muted)]">
             {index + 1} / {SLIDES.length} · ← → para navegar
           </span>
         </div>
@@ -367,7 +372,7 @@ export default function Slides() {
           onClick={() => go(index + 1)}
           disabled={index === last}
           aria-label="Siguiente"
-          className="rounded-full border border-slate-600 bg-slate-900/80 p-2 text-slate-200 disabled:opacity-30"
+          className="rounded-full border border-[var(--panel-border)] bg-[var(--panel)] p-2 text-[var(--text)] disabled:opacity-30"
         >
           <ArrowRight className="h-5 w-5" />
         </button>
