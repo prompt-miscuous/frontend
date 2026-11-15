@@ -1,4 +1,4 @@
-import BlinkComparator from '../components/BlinkComparator.jsx';
+import SkyGif from '../components/SkyGif.jsx';
 import { INFORMACION as info } from '../content/informacion.js';
 import { hrefFor } from '../lib/routes.js';
 
@@ -20,7 +20,7 @@ export default function InfoPage() {
             Probar la demo
           </a>
         </div>
-        <BlinkComparator />
+        <SkyGif />
       </header>
 
       <section className="doc-row" aria-labelledby="info-beneficio">

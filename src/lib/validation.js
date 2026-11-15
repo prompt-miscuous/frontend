@@ -1,6 +1,17 @@
 // Validacion pura del formulario. Rangos y defaults del contrato v1.
 import { isValidBand } from './bands.js';
 
+/** Coordenadas con datos reales conectados (WISE 0855, valores por defecto). */
+export function isDemoSearch({ ra, dec }) {
+  const EPS = 1e-4;
+  return (
+    ra !== null &&
+    dec !== null &&
+    Math.abs(ra - DEFAULTS.ra) <= EPS &&
+    Math.abs(dec - DEFAULTS.dec) <= EPS
+  );
+}
+
 export const RA_MIN = 0;
 export const RA_MAX = 360;
 export const DEC_MIN = -90;

@@ -1,5 +1,7 @@
+import ChatMock from '../components/ChatMock.jsx';
 import ConfigForm from '../components/ConfigForm.jsx';
 import FramePlayer from '../components/FramePlayer.jsx';
+import SkyGif from '../components/SkyGif.jsx';
 import ObjectCard from '../components/ObjectCard.jsx';
 import PlayerPlaceholder from '../components/PlayerPlaceholder.jsx';
 import SummaryPanel from '../components/SummaryPanel.jsx';
@@ -48,7 +50,17 @@ export default function DemoPage({ config }) {
           <ObjectCard onSelect={config.reset} />
         </div>
         <div className="flex flex-col gap-5">
-          {playable ? (
+          {config.manifest?.mockGif ? (
+            <section
+              aria-label="Animación temporal"
+              className="glass-panel rounded-2xl p-5 sm:p-6"
+            >
+              <h2 className="text-lg font-semibold text-white">
+                Animación temporal
+              </h2>
+              <SkyGif caption="Demostración con datos reales de SPHEREx (banda D3, 3 épocas). Para esta búsqueda mostramos la animación de referencia." />
+            </section>
+          ) : playable ? (
             <FramePlayer key={config.requestId} manifest={config.manifest} />
           ) : (
             <PlayerPlaceholder status={config.status} />
@@ -59,6 +71,7 @@ export default function DemoPage({ config }) {
           />
         </div>
       </div>
+      <ChatMock />
     </div>
   );
 }

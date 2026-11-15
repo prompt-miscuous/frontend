@@ -2,8 +2,9 @@
 // generacion simulada. La Fase 3 solo cambia fetchFrames por el real.
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { fetchFrames } from '../lib/api.js';
+import { buildGifMockManifest } from '../lib/gifMock.js';
 import { buildSearch, parseUrlParams } from '../lib/urlParams.js';
-import { DEFAULTS, validateAll } from '../lib/validation.js';
+import { DEFAULTS, isDemoSearch, validateAll } from '../lib/validation.js';
 
 function defaultInputs() {
   return {
@@ -100,6 +101,13 @@ export function useSkyConfig() {
     setStatus('loading');
     setManifest(null);
     setErrorMessage(null);
+    // Búsquedas fuera de las coordenadas conectadas: GIF de demostración.
+    if (!isDemoSearch(values)) {
+      setManifest(buildGifMockManifest(values));
+      setStatus('ready');
+      setRequestId((id) => id + 1);
+      return;
+    }
     try {
       const result = await fetchFrames(
         { ...values, frames: 5 },

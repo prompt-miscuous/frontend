@@ -1,4 +1,4 @@
-import BlinkComparator from '../components/BlinkComparator.jsx';
+import SkyGif from '../components/SkyGif.jsx';
 import { IA as ia } from '../content/ia.js';
 import { hrefFor } from '../lib/routes.js';
 
@@ -14,7 +14,7 @@ export default function AiPage() {
             Revisar una región a mano
           </a>
         </div>
-        <BlinkComparator defaultMarked caption={ia.ilustracion} />
+        <SkyGif caption={ia.ilustracion} />
       </header>
 
       {ia.secciones.map((seccion, index) => (

@@ -49,5 +49,5 @@ export const IA = {
     ],
   },
   ilustracion:
-    'Así se vería un candidato marcado sobre la animación. Ilustración, no datos reales.',
+    'Animación real de SPHEREx: el mismo cielo en tres épocas (banda D3), como la que usa la demo.',
 };
