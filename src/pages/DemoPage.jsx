@@ -1,5 +1,6 @@
 import ChatMock from '../components/ChatMock.jsx';
 import ConfigForm from '../components/ConfigForm.jsx';
+import SkyMap from '../components/SkyMap.jsx';
 import FramePlayer from '../components/FramePlayer.jsx';
 import SkyGif from '../components/SkyGif.jsx';
 import ObjectCard from '../components/ObjectCard.jsx';
@@ -47,6 +48,7 @@ export default function DemoPage({ config }) {
             onGenerate={config.generate}
             onCopy={config.copyLink}
           />
+          <SkyMap />
           <ObjectCard onSelect={config.reset} />
         </div>
         <div className="flex flex-col gap-5">
