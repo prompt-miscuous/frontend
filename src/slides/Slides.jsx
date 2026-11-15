@@ -19,8 +19,6 @@ const LOGOS = {
   light: '/space-apps-cochabamba-dark.webp',
 };
 
-const VIDEO_ID = 'Jqw6QeUIDoU';
-
 function MediaSlide({ header, phrase, cue, children }) {
   return (
     <section className="flex min-h-screen flex-col items-center justify-center gap-6 px-6 pt-12 pb-24 text-center">
@@ -75,12 +73,15 @@ function SlideVideo() {
         BlinkX
       </h1>
       <div className="aspect-video w-full max-w-3xl overflow-hidden rounded-2xl border border-[var(--panel-border)] shadow-2xl">
-        <iframe
-          title="Video: Exploring Cosmic Origins with NASA's SPHEREx"
-          src={`https://www.youtube.com/embed/${VIDEO_ID}?rel=0`}
-          className="h-full w-full"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
+        <video
+          title="Video de presentación de BlinkX"
+          src="/demo%20de%20presentacion.mp4"
+          className="h-full w-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          controls
         />
       </div>
       <p className="max-w-2xl text-base text-[var(--muted)] sm:text-lg">
