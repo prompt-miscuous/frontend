@@ -128,6 +128,19 @@ export function useSkyConfig() {
     }
   }, [isValid, values]);
 
+  const showReferenceAnimation = useCallback(() => {
+    abortRef.current?.abort();
+    const base = values ?? {
+      ra: DEFAULTS.ra,
+      dec: DEFAULTS.dec,
+      size: DEFAULTS.size,
+      band: DEFAULTS.band,
+    };
+    setManifest(buildGifMockManifest(base));
+    setStatus('ready');
+    setRequestId((id) => id + 1);
+  }, [values]);
+
   const copyLink = useCallback(async () => {
     try {
       await navigator.clipboard.writeText(window.location.href);
@@ -157,6 +170,7 @@ export function useSkyConfig() {
     changeBand,
     reset,
     generate,
+    showReferenceAnimation,
     copyLink,
   };
 }

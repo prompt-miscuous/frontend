@@ -33,7 +33,7 @@ export default function DemoPage({ config }) {
           {config.urlWarning}
         </p>
       ) : null}
-      <SkyMap />
+      <SkyMap onShowAnimation={config.showReferenceAnimation} />
       <div className="grid items-start gap-5 lg:grid-cols-[0.94fr_1.06fr]">
         <div className="flex flex-col gap-5">
           <ConfigForm
