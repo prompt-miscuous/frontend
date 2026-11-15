@@ -39,7 +39,8 @@ export function useSkyConfig() {
       ? `Parámetros inválidos en la URL (${initial.invalidKeys.join(', ')}): se usaron los valores de WISE 0855.`
       : null;
 
-  // Espejo formulario -> URL, sin recargar.
+  // Espejo formulario -> URL, sin recargar. Se conserva el hash porque
+  // ahí vive la sección activa (#/demo, #/informacion…).
   useEffect(() => {
     if (!isValid) return;
     const search = buildSearch(values, window.location.search);
@@ -47,7 +48,7 @@ export function useSkyConfig() {
       window.history.replaceState(
         null,
         '',
-        `${window.location.pathname}${search}`
+        `${window.location.pathname}${search}${window.location.hash}`
       );
     }
   }, [isValid, values]);
