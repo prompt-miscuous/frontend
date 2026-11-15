@@ -33,6 +33,7 @@ export default function DemoPage({ config }) {
           {config.urlWarning}
         </p>
       ) : null}
+      <SkyMap />
       <div className="grid items-start gap-5 lg:grid-cols-[0.94fr_1.06fr]">
         <div className="flex flex-col gap-5">
           <ConfigForm
@@ -48,7 +49,6 @@ export default function DemoPage({ config }) {
             onGenerate={config.generate}
             onCopy={config.copyLink}
           />
-          <SkyMap />
           <ObjectCard onSelect={config.reset} />
         </div>
         <div className="flex flex-col gap-5">
