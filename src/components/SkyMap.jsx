@@ -36,14 +36,10 @@ export default function SkyMap({ onShowAnimation }) {
         type="button"
         onClick={toggleFullscreen}
         aria-label="Ver el mapa en pantalla completa"
-        className="absolute top-3 right-3 flex items-center gap-2 rounded-full border border-[var(--panel-border)] bg-[var(--panel)] px-3 py-2 text-xs font-medium text-[var(--text)] shadow-lg backdrop-blur-md"
+        className="absolute top-3 right-3 flex items-center justify-center rounded-full border border-[var(--panel-border)] bg-[var(--panel)] p-2.5 text-[var(--text)] shadow-lg backdrop-blur-md"
       >
         <Maximize className="h-4 w-4" />
-        Pantalla completa
       </button>
-      <figcaption className="px-5 py-3 text-xs text-[var(--muted)]">
-        Toca el mapa para ver la animación de épocas en el reproductor.
-      </figcaption>
     </figure>
   );
 }

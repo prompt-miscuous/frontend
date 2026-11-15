@@ -8,9 +8,7 @@ test('muestra el mapa y avisa al hacer clic para animar el reproductor', () => {
   expect(
     screen.getByAltText(/Mapa cartográfico de todo el cielo observable/)
   ).toBeInTheDocument();
-  expect(
-    screen.getByText(/Toca el mapa para ver la animación de épocas/)
-  ).toBeInTheDocument();
+  expect(screen.queryByText(/Toca el mapa/)).not.toBeInTheDocument();
 
   fireEvent.click(
     screen.getByRole('button', {
