@@ -42,8 +42,7 @@ export default function SkyMap({ onShowAnimation }) {
         Pantalla completa
       </button>
       <figcaption className="px-5 py-3 text-xs text-[var(--muted)]">
-        Todo el cielo observable en un solo mapa. Toca el mapa para ver la
-        animación de épocas en el reproductor.
+        Toca el mapa para ver la animación de épocas en el reproductor.
       </figcaption>
     </figure>
   );
